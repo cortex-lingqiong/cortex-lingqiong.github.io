@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cortex 灵穹创新</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Cortex 灵穹创新：以记忆为核心的个人 AI。Cortex: personal AI built around memory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one calm column under a "dome" of concentric arcs; products as two plates; facts in a mono ledger. */
+:root{
+  --sky:#F2F4F6; --plate:#FFFFFF; --ink:#13203A; --mute:#58657A; --rule:#D5DAE2;
+  --gold:#A7781F; --gold-soft:#F3E8D2; --arc:#13203A;
+  --display:"Noto Serif SC","Songti SC","STSong",Georgia,serif;
+  --body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --sky:#0E1526; --plate:#152038; --ink:#E7EBF3; --mute:#9AA6BA; --rule:#27334D;
+  --gold:#D9AE5B; --gold-soft:#2D2716; --arc:#E7EBF3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --sky:#0E1526; --plate:#152038; --ink:#E7EBF3; --mute:#9AA6BA; --rule:#27334D;
+  --gold:#D9AE5B; --gold-soft:#2D2716; --arc:#E7EBF3; color-scheme:dark}
+*{box-sizing:border-box}
+html[lang="en"] .zh, html:not([lang="en"]) .en{display:none!important}
+body{background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.8;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html[lang="en"] body{line-height:1.65}
+a{color:inherit;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:26px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{font-family:var(--mono);font-weight:500;letter-spacing:.12em;font-size:15px}
+.brand span{font-family:var(--display);font-weight:700;font-size:19px}
+.right{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+nav{display:flex;gap:22px;flex-wrap:wrap;font-size:14.5px;color:var(--mute)}
+nav a{text-decoration:none}nav a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;font-family:var(--mono);font-size:12.5px}
+.lang button{background:none;border:0;color:var(--mute);padding:4px 11px;cursor:pointer;font:inherit}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--sky)}
+
+.hero{position:relative;padding-block:56px 40px;display:grid;gap:22px}
+.dome{position:absolute;inset:-10px 0 auto auto;width:min(520px,70%);aspect-ratio:2/1;max-width:100%;opacity:.16;pointer-events:none}
+.dome path{fill:none;stroke:var(--arc);stroke-width:1}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,60px);line-height:1.2;margin:0;text-wrap:balance;max-width:15em}
+html[lang="en"] h1{max-width:17em;letter-spacing:-.01em}
+.lead{font-size:18px;color:var(--mute);max-width:34em;margin:0}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.btn{display:inline-block;padding:11px 20px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px;border:1px solid var(--ink)}
+.btn.solid{background:var(--ink);color:var(--sky)}
+.btn:hover{border-color:var(--gold)}
+
+section{padding-block:52px;border-top:1px solid var(--rule)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.4vw,32px);margin:0 0 8px;text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 28px;max-width:38em}
+
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+.plate{background:var(--plate);border:1px solid var(--rule);border-radius:14px;padding:26px;display:grid;gap:12px;align-content:start;min-width:0}
+.plate h3{font-family:var(--display);font-size:24px;margin:0;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.08em;padding:2px 10px;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-weight:500}
+.plate p{margin:0;color:var(--mute)}
+.plate ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.plate .more{font-weight:500;color:var(--ink)}
+
+.ledger{font-family:var(--mono);font-size:14px;background:var(--plate);border:1px solid var(--rule);border-radius:14px;overflow-x:auto}
+.ledger table{border-collapse:collapse;width:100%}
+.ledger td{padding:12px 18px;border-top:1px solid var(--rule);vertical-align:top}
+.ledger tr:first-child td{border-top:0}
+.ledger td:first-child{color:var(--gold);white-space:nowrap;width:10em}
+.ledger td:last-child{font-family:var(--body);color:var(--ink)}
+.num{font-variant-numeric:tabular-nums}
+
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:28px}
+.principles h4{font-family:var(--display);font-size:19px;margin:0 0 6px}
+.principles p{margin:0;color:var(--mute)}
+
+
+footer{padding-block:36px 48px;border-top:1px solid var(--rule);color:var(--mute);font-size:13.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (prefers-reduced-motion:no-preference){.dome{animation:rise 1.4s ease-out both}@keyframes rise{from{transform:translateY(14px)}to{transform:none}}}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="#top"><b>CORTEX</b><span>灵穹创新</span></a>
+  <div class="right">
+    <nav>
+      <a href="#ling"><span class="zh">灵</span><span class="en">Ling</span></a>
+      <a href="#teams"><span class="zh">团队版</span><span class="en">For teams</span></a>
+      <a href="#how"><span class="zh">原则</span><span class="en">Principles</span></a>
+      <a href="#company"><span class="zh">公司</span><span class="en">Company</span></a>
+      <a href="#partners"><span class="zh">加入</span><span class="en">Join us</span></a>
+      <a href="#contact"><span class="zh">联系</span><span class="en">Contact</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language"><button type="button" id="l-zh" data-l="zh">中</button><button type="button" id="l-en" data-l="en">EN</button></div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <svg class="dome" viewBox="0 0 400 200" aria-hidden="true">
+    <path d="M10 200a190 190 0 0 1 380 0"/><path d="M40 200a160 160 0 0 1 320 0"/><path d="M70 200a130 130 0 0 1 260 0"/>
+    <path d="M100 200a100 100 0 0 1 200 0"/><path d="M130 200a70 70 0 0 1 140 0"/><path d="M160 200a40 40 0 0 1 80 0"/>
+  </svg>
+  <div class="eyebrow"><span class="zh">以记忆为核心的个人 AI</span><span class="en">Personal AI, built around memory</span></div>
+  <h1><span class="zh">一个记得你、会长大的 AI，记忆归你所有。</span><span class="en">An AI that remembers you and grows with you. The memories stay yours.</span></h1>
+  <p class="lead"><span class="zh">我们做的 AI 会把和你相处的每一天记下来：说过的事、你的习惯、你们一起定下的计划。它每天复盘，越用越懂你。记忆存在你能看到、能删除的地方。</span><span class="en">Our AI keeps a record of every day it spends with you: what you told it, how you like things done, the plans you made together. It reviews each day and understands you better over time. Its memories sit where you can read them and delete them.</span></p>
+  <div class="cta">
+    <a class="btn solid" href="#contact"><span class="zh">申请内测</span><span class="en">Join the beta</span></a>
+    <a class="btn" href="#teams"><span class="zh">团队私有部署</span><span class="en">Private deployment for teams</span></a>
+  </div>
+</div>
+
+<section id="ling">
+  <h2><span class="zh">产品</span><span class="en">Products</span></h2>
+  <p class="sub"><span class="zh">两种用法：个人用的「灵」，和装在你自己机器上的团队版。</span><span class="en">Two ways to use it: Ling for individuals, and a team edition that runs on your own hardware.</span></p>
+  <div class="plates">
+    <article class="plate">
+      <h3><span class="zh">灵</span><span class="en">Ling</span> <span class="tag"><span class="zh">内测中</span><span class="en">Private beta</span></span></h3>
+      <p><span class="zh">有记忆的 AI 伙伴。可以打字，也可以直接说话。</span><span class="en">An AI companion with memory. Type to it, or just talk.</span></p>
+      <ul class="zh">
+        <li>记得你说过的事，回答时说得出依据，记不得就直说</li>
+        <li>每天晚上写日记、整理对你的了解，第二天接着聊</li>
+        <li>会自己查资料、打开新工具；要做不可撤回的事，先等你书面确认</li>
+        <li>会主动开口：早上说天气，读到你关心的消息会告诉你</li>
+      </ul>
+      <ul class="en">
+        <li>Remembers what you said and can point to where it learned it. When it doesn't remember, it says so.</li>
+        <li>Writes a diary every night and updates what it knows about you, so tomorrow picks up where today left off</li>
+        <li>Looks things up and turns on new tools by itself, but waits for your written confirmation before anything irreversible</li>
+        <li>Speaks up on its own: the weather in the morning, news it knows you care about</li>
+      </ul>
+      <p class="more"><span class="zh">灵已经连续运行 <span class="num days">—</span> 天。</span><span class="en">Ling has been running for <span class="num days">—</span> days.</span></p>
+    </article>
+    <article class="plate" id="teams">
+      <h3><span class="zh">团队版</span><span class="en">Team edition</span> <span class="tag"><span class="zh">招募试点</span><span class="en">Pilots open</span></span></h3>
+      <p><span class="zh">给数据不能出内网的研究组、诊所、律所和小企业。</span><span class="en">For research groups, clinics, law firms and small businesses whose data cannot leave their network.</span></p>
+      <ul class="zh">
+        <li>本地大模型和记忆一起部署到你自己的机器上，不连外网也能用</li>
+        <li>记得项目背景和每个成员的习惯，不用每次从头解释</li>
+        <li>记忆是普通文件，停止合作后仍在你的硬盘上，不需要我们也能读</li>
+        <li>我们收的是部署和支持服务费，按团队规模报价</li>
+      </ul>
+      <ul class="en">
+        <li>A local model and its memory installed on your own machine; works with no internet connection</li>
+        <li>Knows the project background and each member's habits, so nobody explains things twice</li>
+        <li>Memories are plain files. If we stop working together, they stay on your disk and remain readable without us</li>
+        <li>We charge for deployment and support, priced by team size</li>
+      </ul>
+      <p class="more"><span class="zh">现在找三到五个试点团队。</span><span class="en">We are looking for three to five pilot teams.</span></p>
+    </article>
+  </div>
+</section>
+
+<section id="how">
+  <h2><span class="zh">我们守的原则</span><span class="en">What we hold to</span></h2>
+  <p class="sub"><span class="zh">做带记忆的 AI，信任比功能重要。</span><span class="en">For an AI that remembers, trust matters more than features.</span></p>
+  <div class="principles">
+    <div><h4><span class="zh">记忆归你</span><span class="en">Your memories are yours</span></h4><p><span class="zh">你能看到它记住了什么、从哪次对话得来；你要删，就是真的删掉。</span><span class="en">You can see what it remembers and which conversation it came from. When you delete something, it is gone.</span></p></div>
+    <div><h4><span class="zh">不编造</span><span class="en">No made-up memories</span></h4><p><span class="zh">没发生过的事不说成发生过。被问到不知道的，直接说不知道。我们每周测一次这一条。</span><span class="en">It never claims something happened when it didn't. Asked about something it doesn't know, it says it doesn't know. We test this every week.</span></p></div>
+    <div><h4><span class="zh">要紧的事你拍板</span><span class="en">You decide what matters</span></h4><p><span class="zh">发消息、删除、花钱这类事，AI 只能提出来，要你书面确认才会做。</span><span class="en">Sending, deleting, spending: the AI can propose these, and acts only after you confirm in writing.</span></p></div>
+  </div>
+</section>
+
+<section id="company">
+  <h2><span class="zh">公司</span><span class="en">Company</span></h2>
+  <p class="sub" style="margin-bottom:16px"><span class="zh">Cortex 灵穹创新做以记忆为核心的个人 AI。核心团队由多位博士和领域专家组成，负责技术和研究；创始人前期先把方向探清楚。要走得远，靠的是一群人，所以我们正在招募产品方向的合伙人。</span><span class="en">Cortex builds personal AI around memory. Our core team of PhDs and domain experts covers the technology and research, while the founder first mapped out the direction. Going far takes a group, so we are now recruiting co-founders on the product side.</span></p>
+  <div class="ledger"><table>
+    <tr><td><span class="zh">成立</span><span class="en">Founded</span></td><td>2026</td></tr>
+    <tr><td><span class="zh">灵开始运行</span><span class="en">Ling online since</span></td><td class="num">2026-09-30</td></tr>
+    <tr><td><span class="zh">方向</span><span class="en">Focus</span></td><td><span class="zh">个人 AI、AI 记忆、私有部署</span><span class="en">Personal AI, AI memory, private deployment</span></td></tr>
+    <tr><td><span class="zh">阶段</span><span class="en">Stage</span></td><td><span class="zh">种子前，公司注册筹备中</span><span class="en">Pre-seed, incorporation in progress</span></td></tr>
+  </table></div>
+</section>
+
+<section id="partners">
+  <h2><span class="zh">招募合伙人与投资人</span><span class="en">Co-founders and investors</span></h2>
+  <p class="sub"><span class="zh">技术由我们的博士和专家团队负责。我们缺的是把技术做成好产品、卖出去的人。股权按贡献谈。</span><span class="en">Our team of PhDs and domain experts handles the technology. What we need are people who can turn it into a great product and sell it. Equity is based on contribution.</span></p>
+  <div class="principles">
+    <div><h4><span class="zh">产品合伙人</span><span class="en">Product co-founder</span></h4><p><span class="zh">做过从零到一的 C 端或 SaaS 产品，能判断用户真正要什么，定下做什么、不做什么，把研究成果变成有人愿意付钱的产品。</span><span class="en">You've taken a consumer or SaaS product from zero to one. You can tell what users really need, decide what to build and what to drop, and turn research into something people pay for.</span></p></div>
+    <div><h4><span class="zh">增长合伙人</span><span class="en">Growth co-founder</span></h4><p><span class="zh">会做获客和转化，能跑试用、看数据、调定价，把第一批一百个付费用户找来。</span><span class="en">You know acquisition and conversion, can run trials, read the numbers and tune pricing, and can find our first hundred paying customers.</span></p></div>
+    <div><h4><span class="zh">商务合伙人</span><span class="en">Business co-founder</span></h4><p><span class="zh">熟悉研究机构、医疗或法律行业，能谈下团队版的试点和合同。</span><span class="en">You know research institutions, healthcare or legal, and can close team-edition pilots and contracts.</span></p></div>
+  </div>
+  <p class="sub" style="margin:20px 0 0"><span class="zh">技术方向的合伙人也欢迎来聊，尤其是做过大模型产品落地、本地部署的工程师。</span><span class="en">Technical co-founders are welcome to reach out too, especially engineers who have shipped LLM products or on-premise deployments.</span></p>
+  <p class="sub" style="margin:12px 0 0"><span class="zh">感兴趣就联系我们：说说你做过什么、为什么想做这件事。</span><span class="en">Interested? Tell us what you've built and why this matters to you.</span></p>
+  <div class="principles" style="margin-top:36px">
+    <div><h4><span class="zh">投资人</span><span class="en">Investors</span></h4><p><span class="zh">我们在准备种子轮。关注个人 AI、AI 记忆或私有部署的天使和机构，欢迎来信要资料。</span><span class="en">We're preparing a seed round. Angels and funds focused on personal AI, AI memory or private deployment are welcome to ask for our materials.</span></p></div>
+    <div><h4><span class="zh">内测用户</span><span class="en">Beta users</span></h4><p><span class="zh">愿意每天用灵、告诉我们哪里不好用的人。内测期间免费。</span><span class="en">People willing to use Ling daily and tell us what doesn't work. Free during the beta.</span></p></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2><span class="zh">联系我们</span><span class="en">Get in touch</span></h2>
+  <p class="sub"><span class="zh">想参加内测、做团队版试点，或者谈合作，写几句话告诉我们你在做什么、现在怎么用 AI。我们三个工作日内回复。</span><span class="en">To join the beta, run a team pilot, or work with us, write a few lines about what you do and how you use AI today. We reply within three working days.</span></p>
+  <div class="ledger"><table>
+    <tr><td>X</td><td><a href="https://x.com/innovation641" target="_blank" rel="noopener">@innovation641</a> <span class="zh">（私信）</span><span class="en">(DM)</span></td></tr>
+    <tr><td>LinkedIn</td><td><a href="https://www.linkedin.com/in/yang-lee-098414203/" target="_blank" rel="noopener">Yang Lee</a></td></tr>
+    <tr><td><span class="zh">邮箱</span><span class="en">Email</span></td><td><span class="zh">公司邮箱开通中</span><span class="en">Company email coming soon</span></td></tr>
+    <tr><td><span class="zh">合伙人 / 投资</span><span class="en">Co-founders / investors</span></td><td><span class="zh">私信开头写“合伙人”或“投资”</span><span class="en">Start your message with “Co-founder” or “Investor”</span></td></tr>
+    <tr><td><span class="zh">地址</span><span class="en">Address</span></td><td><span class="zh">公司注册完成后公布</span><span class="en">Published after incorporation</span></td></tr>
+  </table></div>
+</section>
+
+<footer><span>© 2026 Cortex 灵穹创新</span><span><a href="privacy.html"><span class="zh">隐私政策</span><span class="en">Privacy</span></a> · <a href="terms.html"><span class="zh">服务条款与退款</span><span class="en">Terms &amp; refunds</span></a></span></footer>
+</div>
+<script>
+(function(){
+  var s=new Date("2026-09-30T00:00:00+08:00"),d=Math.floor((Date.now()-s)/864e5)+1;
+  document.querySelectorAll(".days").forEach(function(el){if(d>0)el.textContent=d;});
+  function set(l){document.documentElement.lang=l==="en"?"en":"zh-CN";
+    document.getElementById("l-zh").setAttribute("aria-pressed",l!=="en");
+    document.getElementById("l-en").setAttribute("aria-pressed",l==="en");
+    try{localStorage.setItem("cortex-lang",l)}catch(e){}}
+  var saved=null;try{saved=localStorage.getItem("cortex-lang")}catch(e){}
+  set(location.hash==="#en"?"en":saved||((navigator.language||"").toLowerCase().indexOf("zh")===0?"zh":"en"));
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){set(b.dataset.l)})});
+})();
+</script>
+
+</body>
+</html>
